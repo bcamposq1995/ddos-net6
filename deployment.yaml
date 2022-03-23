@@ -1,0 +1,23 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ddos-deployment
+  labels:
+    app: ddos
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: ddos
+  template:
+    metadata:
+      labels:
+        app: ddos
+    spec:
+      containers:
+      - name: ddos
+        image: bcamposq1995/ddos
+        imagePullPolicy: Never
+        env:
+        - name: URL
+          value: https://bncr-fi.cf/
